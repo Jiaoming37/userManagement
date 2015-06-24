@@ -27,6 +27,26 @@ public class UserController {
         return userService.listUser();
     }
 
+    @RequestMapping(value = "/log", method = RequestMethod.GET)
+    public ModelAndView loginPage() {
+        ModelAndView modelAndView = new ModelAndView("userLogin");
+        modelAndView.addObject("user", new User());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/log", method = RequestMethod.POST)
+    public ModelAndView confirmOfLogin(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView("userLogin");
+        List<User> list=userService.findByNameAndPassword(user.getName(),user.getPassword());
+        if(list.size()==0){
+            modelAndView=new ModelAndView("userLogin");
+        }else{
+            modelAndView=new ModelAndView("userList");
+            modelAndView.addObject("users", userService.listUser());
+        }
+        return  modelAndView;
+    }
+
     @RequestMapping(value = "/")
     public ModelAndView listOfUsers() {
         ModelAndView modelAndView = new ModelAndView("userList");
@@ -48,6 +68,7 @@ public class UserController {
         userService.addUser(user);
         String message = "User was successfully added.";
         modelAndView.addObject("message", message);
+        List<User> users = userService.listUser();
         modelAndView.addObject("users", userService.listUser());
         return  modelAndView;
     }

@@ -22,11 +22,12 @@ public class UserService {
 
     @Transactional
     public List<User> listUser() {
-        return userDAO.listUser();
+       return userDAO.listUser();
     }
 
     @Transactional
     public void addUser(User user) {
+
         userDAO.addUser(user);
     }
 
@@ -48,6 +49,16 @@ public class UserService {
     @Transactional
     public void deleteUserList(long[] ids) {
         userDAO.deleteUserList(ids);
+    }
+
+    @Transactional
+    public User findByName(String name) {
+        return userDAO.findByName(name);
+    }
+
+    @Transactional
+    public List<User> findByNameAndPassword(String name,String password) {
+        return userDAO.findByNameAndPassword(name,password);
     }
 
 }

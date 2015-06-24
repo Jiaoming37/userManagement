@@ -1,12 +1,16 @@
 package com.tw.core.dao;
 
 import com.tw.core.User;
+import com.tw.core.UsersDAO;
+import com.tw.core.service.PasswordService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import java.security.MessageDigest;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by twer on 7/17/14.
@@ -28,6 +32,8 @@ public class UserDAO {
     }
 
     public void addUser(User user) {
+        //PasswordService ps=new PasswordService();
+        //ps.encryptPassword(user);
         sessionFactory.getCurrentSession().save(user);
     }
 
@@ -51,5 +57,22 @@ public class UserDAO {
         for (int index = 0; index < ids.length; index++) {
             deleteUser(ids[index]);
         }
+    }
+
+    public User findByName(String name) {
+        String query = "FROM User WHERE name = ?";
+        User user= (User)sessionFactory.getCurrentSession().createQuery(query)
+                .setString(0,name);
+        return user;
+    }
+
+    public List<User> findByNameAndPassword(String name,String password){
+        //String query="From User Where name=" +name+ " and password = " +password ";
+        PasswordService ps=new PasswordService();
+        String enpass=ps.encrypt(password);
+        String query=" From User Where name= ?  and password = ?";
+        List<User> list=sessionFactory.getCurrentSession().createQuery(query).setString(0, name).setString(1,enpass).list();
+        return list;
+
     }
 }
