@@ -52,11 +52,6 @@ public class UserService {
     }
 
     @Transactional
-    public User findByName(String name) {
-        return userDAO.findByName(name);
-    }
-
-    @Transactional
     public List<User> findByNameAndPassword(String name,String password) {
         return userDAO.findByNameAndPassword(name,password);
     }

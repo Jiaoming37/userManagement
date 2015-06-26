@@ -17,6 +17,13 @@
 
     <context:component-scan base-package="com.tw.web"/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/*"/>
+            <bean class="com.tw.web.UserInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>

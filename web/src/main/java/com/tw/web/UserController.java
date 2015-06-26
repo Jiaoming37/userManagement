@@ -1,6 +1,7 @@
 package com.tw.web;
 
 import com.tw.core.User;
+import com.tw.core.service.PasswordService;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,35 +17,17 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private PasswordService passwordService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService,PasswordService passwordService) {
         this.userService = userService;
+        this.passwordService=passwordService;
     }
 
     @RequestMapping("/all")
     public List<User> listUser() {
         return userService.listUser();
-    }
-
-    @RequestMapping(value = "/log", method = RequestMethod.GET)
-    public ModelAndView loginPage() {
-        ModelAndView modelAndView = new ModelAndView("userLogin");
-        modelAndView.addObject("user", new User());
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/log", method = RequestMethod.POST)
-    public ModelAndView confirmOfLogin(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView("userLogin");
-        List<User> list=userService.findByNameAndPassword(user.getName(),user.getPassword());
-        if(list.size()==0){
-            modelAndView=new ModelAndView("userLogin");
-        }else{
-            modelAndView=new ModelAndView("userList");
-            modelAndView.addObject("users", userService.listUser());
-        }
-        return  modelAndView;
     }
 
     @RequestMapping(value = "/")
@@ -66,6 +49,7 @@ public class UserController {
     public ModelAndView addUser(@ModelAttribute User user) {
         ModelAndView modelAndView = new ModelAndView("userList");
         userService.addUser(user);
+        passwordService.encryptPassword(user);
         String message = "User was successfully added.";
         modelAndView.addObject("message", message);
         List<User> users = userService.listUser();

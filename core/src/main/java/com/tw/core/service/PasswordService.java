@@ -34,16 +34,4 @@ public class PasswordService {
         usersDAO.update(user);
     }
 
-    public static void main(String args[]){
-        PasswordService ps=new PasswordService();
-        User user=new User();
-        user.setName("Sen");
-        user.setPassword("sensen");
-        user.setEmail("sen@abc.com");
-        user.setAge(21);
-        ps.encryptPassword(user);
-        System.out.print(user.getPassword());
-
-
-    }
 }

@@ -11,7 +11,7 @@ import java.security.MessageDigest;
 
 import java.util.List;
 import java.util.Random;
-
+        
 /**
  * Created by twer on 7/17/14.
  */
@@ -68,10 +68,10 @@ public class UserDAO {
 
     public List<User> findByNameAndPassword(String name,String password){
         //String query="From User Where name=" +name+ " and password = " +password ";
-        PasswordService ps=new PasswordService();
-        String enpass=ps.encrypt(password);
+        //PasswordService ps=new PasswordService();
+        //String enpass=ps.encrypt(password);
         String query=" From User Where name= ?  and password = ?";
-        List<User> list=sessionFactory.getCurrentSession().createQuery(query).setString(0, name).setString(1,enpass).list();
+        List<User> list=sessionFactory.getCurrentSession().createQuery(query).setString(0, name).setString(1,password).list();
         return list;
 
     }
