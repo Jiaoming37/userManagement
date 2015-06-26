@@ -21,7 +21,6 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         String cookieNameLastUrl=request.getRequestURI();
         if(session.getAttribute("name")==null){
             cookieNameLastUrl = cookieNameLastUrl.replaceFirst("/web", "");
-            //System.out.print(cookieNameLastUrl+"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
             CookieAPI.setCookie(response, "cookieNameLastUrl", cookieNameLastUrl);
             response.sendRedirect("/web/login/");
             return false;
