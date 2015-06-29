@@ -25,6 +25,9 @@ public class User {
     @Column(name = "AGE")
     private int age;
 
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
+
     public User() {
     }
 
@@ -67,4 +70,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Employee getEmployee(){return employee;}
+
+    public void setEmployee(Employee employee){this.employee=employee;}
 }

@@ -48,7 +48,7 @@ public class LoginController {
         }else{
             session.setAttribute("name",user.getName());
             //System.out.print(cookieNameLastUrl+"fffffffffffffffffffffffffffffffffffff");
-            String redirectUrl=cookieNameLastUrl==null?"/user/":cookieNameLastUrl;
+            String redirectUrl=(cookieNameLastUrl==null ?"/user/":cookieNameLastUrl);
             modelAndView=new ModelAndView("redirect:"+redirectUrl);
             //modelAndView=new ModelAndView("userList");
             //modelAndView.addObject("users", userService.listUser());

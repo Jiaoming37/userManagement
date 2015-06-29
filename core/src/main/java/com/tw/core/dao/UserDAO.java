@@ -32,8 +32,6 @@ public class UserDAO {
     }
 
     public void addUser(User user) {
-        //PasswordService ps=new PasswordService();
-        //ps.encryptPassword(user);
         sessionFactory.getCurrentSession().save(user);
     }
 

@@ -1,6 +1,8 @@
 package com.tw.web;
 
+import com.tw.core.Employee;
 import com.tw.core.User;
+import com.tw.core.service.EmployeeService;
 import com.tw.core.service.PasswordService;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,13 @@ public class UserController {
 
     private UserService userService;
     private PasswordService passwordService;
+    private EmployeeService employeeService;
 
     @Autowired
-    public UserController(UserService userService,PasswordService passwordService) {
+    public UserController(UserService userService,PasswordService passwordService,EmployeeService employeeService) {
         this.userService = userService;
         this.passwordService=passwordService;
+        this.employeeService=employeeService;
     }
 
     @RequestMapping("/all")
@@ -78,6 +82,10 @@ public class UserController {
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("userList");
+        // Employee employee=employeeService.findEmployeeByUserID(id);
+        //if(employee!=null){
+        //employeeService.deleteEmployee(employee.getId());
+        //}
         userService.deleteUser(id);
         String message = "User was successfully deleted.";
         modelAndView.addObject("message", message);
