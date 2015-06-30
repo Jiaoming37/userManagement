@@ -9,7 +9,7 @@
     <title>Edit user page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../../lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css" />
 </head>
 <body>
 <div class="navbar navbar-default navbar-static-top" role="navigation">

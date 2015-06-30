@@ -1,4 +1,4 @@
-create table COACH (
+create table CUSTOMER_COURSE_JOIN (
     ID int not null AUTO_INCREMENT,
     CUSTOMER_ID int not null,
     COURSE_ID int not null,

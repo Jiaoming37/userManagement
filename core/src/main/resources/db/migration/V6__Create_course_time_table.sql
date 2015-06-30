@@ -1,7 +1,0 @@
-create table COURSE_TIME (
-    ID int not null AUTO_INCREMENT,
-    COURSE_ID varchar(100) not null,
-    DATE date not null,
-    PRIMARY KEY (ID),
-    NSTRAINT FOREIGN KEY (`COURSE_ID`) REFERENCES `COURSE` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-);

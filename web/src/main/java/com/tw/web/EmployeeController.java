@@ -29,7 +29,7 @@ public class EmployeeController {
 
     @RequestMapping(value="/")
     public ModelAndView listOfEmployee(){
-        ModelAndView modelAndView=new ModelAndView("employeeList");
+        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         List<Employee> emlpoyees=employeeService.listEmployee();
         modelAndView.addObject("employees",emlpoyees);
         return modelAndView;
@@ -37,14 +37,14 @@ public class EmployeeController {
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public ModelAndView addEmployee(){
-        ModelAndView modelAndView=new ModelAndView("addEmployee");
+        ModelAndView modelAndView=new ModelAndView("employee/addEmployee");
         modelAndView.addObject("employee",new Employee());
         return modelAndView;
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ModelAndView addEmployee(@ModelAttribute Employee employee){
-        ModelAndView modelAndView=new ModelAndView("employeeList");
+        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.addEmployee(employee);
         List<Employee> employees=employeeService.listEmployee();
         modelAndView.addObject("employees",employees);
@@ -53,7 +53,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}/edit",method = RequestMethod.GET)
     public ModelAndView updateEmployee(@PathVariable long id){
-        ModelAndView modelAndView=new ModelAndView("employeeEdit");
+        ModelAndView modelAndView=new ModelAndView("employee/employeeEdit");
         Employee employee=employeeService.findEmployeeById(id);
         modelAndView.addObject("employee",employee);
         return modelAndView;
@@ -61,7 +61,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}/edit",method = RequestMethod.POST)
     public ModelAndView updateEmployee(@ModelAttribute Employee employee,@PathVariable long id){
-        ModelAndView modelAndView=new ModelAndView("employeeList");
+        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.updateEmployee(employee);
         List<Employee> employees=employeeService.listEmployee();
         modelAndView.addObject("employees",employees);
@@ -70,7 +70,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}/delete",method =RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable long id){
-        ModelAndView modelAndView=new ModelAndView("employeeList");
+        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.deleteEmployee(id);
         List<Employee> employees=employeeService.listEmployee();
         modelAndView.addObject("employees",employees);

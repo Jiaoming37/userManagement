@@ -21,7 +21,7 @@ public class Employee {
     private int type;
 
     @OneToOne
-    @JoinColumn(name = "USERID")
+    @JoinColumn(name = "USERID",nullable = false)
     private User user;
 
     public Employee() {

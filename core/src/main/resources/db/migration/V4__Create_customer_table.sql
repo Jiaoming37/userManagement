@@ -3,5 +3,6 @@ create table CUSTOMER (
     NAME varchar(100) not null,
     EMAIL varchar(100) not null,
     PRIVATE_COACH int,
-    PRIMARY KEY (ID)
+    PRIMARY KEY (ID),
+    CONSTRAINT FOREIGN KEY (`PRIVATE_COACH`) REFERENCES `USER` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );

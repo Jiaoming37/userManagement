@@ -36,7 +36,7 @@ public class UserController {
 
     @RequestMapping(value = "/")
     public ModelAndView listOfUsers() {
-        ModelAndView modelAndView = new ModelAndView("userList");
+        ModelAndView modelAndView = new ModelAndView("user/userList");
         List<User> users = userService.listUser();
         modelAndView.addObject("users", users);
         return modelAndView;
@@ -44,14 +44,14 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addUserPage() {
-        ModelAndView modelAndView = new ModelAndView("addUser");
+        ModelAndView modelAndView = new ModelAndView("user/addUser");
         modelAndView.addObject("user", new User());
         return  modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addUser(@ModelAttribute User user) {
-        ModelAndView modelAndView = new ModelAndView("userList");
+        ModelAndView modelAndView = new ModelAndView("user/userList");
         userService.addUser(user);
         passwordService.encryptPassword(user);
         String message = "User was successfully added.";
@@ -63,7 +63,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public ModelAndView editUserPage(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("userEdit");
+        ModelAndView modelAndView = new ModelAndView("user/userEdit");
         User user = userService.findUserById(id);
         modelAndView.addObject("user", user);
         return modelAndView;
@@ -71,7 +71,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
     public ModelAndView editUser(@ModelAttribute User user, @PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("userList");
+        ModelAndView modelAndView = new ModelAndView("user/userList");
         userService.updateUser(user);
         String message = "User was successfully edited.";
         modelAndView.addObject("message", message);
@@ -81,7 +81,7 @@ public class UserController {
 
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public ModelAndView deleteUser(@PathVariable long id) {
-        ModelAndView modelAndView = new ModelAndView("userList");
+        ModelAndView modelAndView = new ModelAndView("user/userList");
         // Employee employee=employeeService.findEmployeeByUserID(id);
         //if(employee!=null){
         //employeeService.deleteEmployee(employee.getId());
@@ -96,7 +96,7 @@ public class UserController {
     @RequestMapping(value = "/deleteAll/{ids:(?:[0-9]+[,]?)+}", method = RequestMethod.GET)
     public ModelAndView batchDeleteUser(@PathVariable long[] ids) {
         System.out.println("---------------");
-        ModelAndView modelAndView = new ModelAndView("userList");
+        ModelAndView modelAndView = new ModelAndView("user/userList");
         System.out.println(ids.length);
         System.out.println("---------------");
         userService.deleteUserList(ids);
