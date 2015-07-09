@@ -42,3 +42,7 @@ configurations {
     compile { extendsFrom mysql }
 }
 
+jettyRun{
+    reload="automatic"
+    scanIntervalSeconds=1
+}

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: jiaoming
-  Date: 6/30/15
-  Time: 4:27 PM
+  Date: 7/1/15
+  Time: 4:12 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -13,34 +13,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8">
-  <title>Edit customer page</title>
+  <title>Edit course_time page</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/css/bootstrap.min.css" />
 </head>
 <body>
-
 <%@include file="/WEB-INF/views/commonNavigation.jsp"%>
 
 <div class="container">
 
-  <h1>Edit customer page</h1>
-  <form:form method="post" commandName="customer">
+  <h1>Edit course-time page</h1>
+  <form:form method="post" commandName="courseTime">
     <div class="form-group">
-      <label for="name">Name:</label>
-      <form:input path="name" class="form-control"/>
+      <label for="course.id">Course_id:</label>
+      <form:input path="course.id" class="form-control"/>
     </div>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <form:input path="email" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="PrivateCoach.id">Private_coach:</label>
-      <form:input path="PrivateCoach.id" class="form-control"/>
+      <label for="time">Time:</label>
+      <form:input path="time" class="form-control" />
     </div>
     <div class="form-group">
       <input class="btn btn-primary" type="submit" value="更新" />
-      <a href="${pageContext.request.contextPath}/customer/">返回</a>
+      <a href="${pageContext.request.contextPath}/courseTime/">返回</a>
     </div>
   </form:form>
 </div>

@@ -45,4 +45,8 @@ public class CourseDAO {
         }
     }
 
+    public Course findByCourseName(String courseName){
+        Course course=(Course)sessionFactory.getCurrentSession().createQuery("from Course where name =?").setString(0,courseName).list().get(0);
+        return course;
+    }
 }

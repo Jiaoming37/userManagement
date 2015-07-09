@@ -2,6 +2,7 @@ package com.tw.core.service;
 
 import com.tw.core.Employee;
 import com.tw.core.dao.EmployeeDAO;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,5 +49,10 @@ public class EmployeeService {
     @Transactional
     public void deleteEmployeeList(long[] ids){
         employeeDAO.deleteEmployeeList(ids);
+    }
+
+    @Transactional
+    public List<Employee> listCoach(){
+        return employeeDAO.listCoach();
     }
 }

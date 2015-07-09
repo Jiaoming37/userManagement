@@ -9,9 +9,11 @@
     <title>Edit user page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../../../lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css" />
 </head>
+
 <body>
+
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -19,18 +21,27 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">用户管理</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/user/">用户管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/employee/">雇员管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/">雇客管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/course/">课程管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/courseTime/">时间管理</a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="container">
 
+
+<div class="container">
     <h1>Edit user page</h1>
     <form:form method="post" commandName="user">
         <div class="form-group">
             <label for="name">Name:</label>
             <form:input path="name" class="form-control"/>
+        </div>
+        <div class="form-group" style="display: none">
+            <label for="password">Password:</label>
+            <form:input path="password" class="form-control"/>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>

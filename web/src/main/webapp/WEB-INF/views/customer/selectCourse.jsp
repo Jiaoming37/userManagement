@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: jiaoming
-  Date: 6/30/15
-  Time: 4:01 PM
+  Date: 7/8/15
+  Time: 4:44 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,13 +16,14 @@
   <title>Add customer page</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="../lib/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/css/bootstrap.min.css" />
   <script src="/web/lib/js/jquery-1.11.3.min.js"></script>
   <script src="/web/lib/js/bootstrap-3.3.5.js"></script>
   <script>
     $(document).on('click', '.dropdown-menu li', function() {
+      //$('#datebox').val($(this).html());
       $('#datebox').val($(this).attr('value'));
-      $('#choose_coach').html($(this).find(":first-child").html()+'<span class="caret" ></span>');
+      $('#select_course').html($(this).find(":first-child").html()+'<span class="caret" ></span>');
     });
   </script>
 </head>
@@ -31,35 +32,25 @@
 <%@include file="/WEB-INF/views/commonNavigation.jsp"%>
 
 <div class="container">
-  <h1>新增顾客</h1>
+  <h1>添加课程</h1>
 
-  <form:form method="post" commandName="customer" role="form">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <form:input path="name" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <form:input path="email" class="form-control" />
-    </div>
+  <form:form method="post" commandName="course" role="form">
 
     <div class="form-group">
-      <label for="privateCoach.id">Private_coach:</label>
-      <form:input type="hidden" path="privateCoach.id"  id="datebox" class="form-control"/>
+      <label for="id">Choose_course:</label>
+      <form:input type="hidden" path="id"  id="datebox" class="form-control"/>
       <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="choose_coach" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Choose coach:
+        <button class="btn btn-default dropdown-toggle" type="button" id="select_course" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Select course:
           <span class="caret" ></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="choose_private_coach:">
-          <c:forEach var="coach" items="${coaches}">
-            <li role="presentation" value="${coach.id}"><a role="menuitem" tabindex="-1" >${coach.name}</a></li>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="select_course:">
+          <c:forEach var="course" items="${courses}">
+            <li role="presentation" value="${course.id}"><a role="menuitem" tabindex="-1" >${course.name}</a></li>
           </c:forEach>
         </ul>
       </div>
     </div>
-
-
 
     <div class="form-group">
       <input class="btn btn-primary" type="submit" value="新增" />
@@ -71,3 +62,5 @@
 <p></p>
 </body>
 </html>
+
+

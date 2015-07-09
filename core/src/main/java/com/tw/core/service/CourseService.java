@@ -31,7 +31,7 @@ public class CourseService {
     }
 
     @Transactional
-    public Course findCustomerById(long id){
+    public Course findCourseById(long id){
         return courseDAO.findCourseById(id);
     }
 
@@ -43,5 +43,10 @@ public class CourseService {
     @Transactional
     public void deleteCourse(long id){
         courseDAO.deleteCourse(id);
+    }
+
+    @Transactional
+    public Course findByCourseName(String courseName){
+        return courseDAO.findByCourseName(courseName);
     }
 }

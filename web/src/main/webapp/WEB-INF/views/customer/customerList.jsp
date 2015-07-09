@@ -7,7 +7,7 @@
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <?xml version="1.0" encoding="utf-8" ?>
-<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8"%>
+<%@ page language="java"  pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,19 +18,7 @@
   <link rel="stylesheet" href="../lib/css/bootstrap.min.css" />
 </head>
 <body>
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">管理界面</a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">顾客管理</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
+<%@include file="/WEB-INF/views/commonNavigation.jsp"%>
 <div class="container">
   <div class="form-group input-group ">
     <a href="${pageContext.request.contextPath}/customer/add" class="btn btn-primary ">添加顾客</a>
@@ -65,15 +53,16 @@
         <td>${customer.id}</td>
         <td>${customer.name}</td>
         <td>${customer.email}</td>
-        <td>${customer.private_coach}</td>
+        <td>姓名:${customer.privateCoach.name}； 邮箱:${customer.privateCoach.user.email}； 年龄:${customer.privateCoach.user.age}；</td>
         <td>
           <c:forEach var="course" items="${customer.courses}">
-              ${course.name}
+              ${course.name}；
           </c:forEach>
         </td>
         <td>
-          <a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit">修改</a>
-          <a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/delete">删除</a>
+          <a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/edit">修改信息</a>
+          <a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/delete">删除顾客</a>
+          <a class="btn btn-default" href="${pageContext.request.contextPath}/customer/${customer.id}/select">顾客选课</a>
         </td>
       </tr>
     </c:forEach>

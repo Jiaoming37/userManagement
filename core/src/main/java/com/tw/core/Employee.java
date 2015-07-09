@@ -2,6 +2,7 @@ package com.tw.core;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by jiaoming on 6/29/15.
@@ -23,6 +24,12 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "USERID",nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "coach")
+    private Set<Course> courses;
+
+    @OneToMany(mappedBy = "privateCoach")
+    private Set<Customer> customers;
 
     public Employee() {
 
@@ -60,4 +67,19 @@ public class Employee {
         this.user = user;
     }
 
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
+    }
 }

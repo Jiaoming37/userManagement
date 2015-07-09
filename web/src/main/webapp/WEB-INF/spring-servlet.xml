@@ -20,6 +20,9 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/employee/*"/>
+            <mvc:mapping path="/customer/*"/>
+            <mvc:mapping path="/course/*"/>
             <bean class="com.tw.web.UserInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

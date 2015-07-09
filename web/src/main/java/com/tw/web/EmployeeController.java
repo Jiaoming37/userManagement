@@ -1,6 +1,7 @@
 package com.tw.web;
 
 import com.tw.core.Employee;
+import com.tw.core.User;
 import com.tw.core.service.EmployeeService;
 import com.tw.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +45,8 @@ public class EmployeeController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ModelAndView addEmployee(@ModelAttribute Employee employee){
-        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.addEmployee(employee);
-        List<Employee> employees=employeeService.listEmployee();
-        modelAndView.addObject("employees",employees);
-        return modelAndView;
+        return new ModelAndView("redirect:/employee/");
     }
 
     @RequestMapping(value = "/{id}/edit",method = RequestMethod.GET)
@@ -61,19 +59,13 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}/edit",method = RequestMethod.POST)
     public ModelAndView updateEmployee(@ModelAttribute Employee employee,@PathVariable long id){
-        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.updateEmployee(employee);
-        List<Employee> employees=employeeService.listEmployee();
-        modelAndView.addObject("employees",employees);
-        return modelAndView;
+        return new ModelAndView("redirect:/employee/");
     }
 
     @RequestMapping(value = "/{id}/delete",method =RequestMethod.GET)
     public ModelAndView deleteEmployee(@PathVariable long id){
-        ModelAndView modelAndView=new ModelAndView("employee/employeeList");
         employeeService.deleteEmployee(id);
-        List<Employee> employees=employeeService.listEmployee();
-        modelAndView.addObject("employees",employees);
-        return modelAndView;
+        return new ModelAndView("redirect:/employee/");
     }
 }

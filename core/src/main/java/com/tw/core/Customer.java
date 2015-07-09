@@ -20,14 +20,11 @@ public class Customer {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name="PRIVATE_COACH",nullable = true)
-    private int private_coach;
+    @ManyToOne
+    @JoinColumn(name="PRIVATE_COACH",nullable = true)
+    private Employee privateCoach;
 
-    @ManyToMany(mappedBy = "customers",fetch=FetchType.EAGER)
-    //@JoinTable(name="CUSTOMER_COURSE_JOIN",
-    //        joinColumns = {@JoinColumn(name="CUSTOMER_ID")},
-    //        inverseJoinColumns = {@JoinColumn(name="COURSE_ID")}
-    //)
+    @ManyToMany(mappedBy = "customers",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<Course> courses;
 
     public Customer() {
@@ -57,12 +54,15 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPrivate_coach(){return private_coach;}
-
-    public void setPrivate_coach(int private_coach){ this.private_coach=private_coach;}
-
     public Set<Course> getCourses(){return courses;}
 
     public void setCourses(Set<Course> courses){this.courses=courses;}
 
+    public Employee getPrivateCoach() {
+        return privateCoach;
     }
+
+    public void setPrivateCoach(Employee privateCoach) {
+        this.privateCoach = privateCoach;
+    }
+}

@@ -18,7 +18,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">用户管理</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/user/">用户管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/employee/">雇员管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/customer/">雇客管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/course/">课程管理</a></li>
+                <li><a href="${pageContext.request.contextPath}/courseTime/">时间管理</a></li>
             </ul>
         </div>
     </div>

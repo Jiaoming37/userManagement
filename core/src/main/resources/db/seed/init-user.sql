@@ -20,9 +20,16 @@ insert into CUSTOMER (NAME,EMAIL,PRIVATE_COACH) values ('qian','qian@abc.com',6)
 
 insert into COURSE (NAME,COACH_ID) values ('swimming',2);
 insert into COURSE (NAME,COACH_ID) values ('jump',5);
+insert into COURSE (NAME,COACH_ID) values ('high',5);
 
 
 insert into CUSTOMER_COURSE_JOIN(CUSTOMER_ID,COURSE_ID) values(1,1);
 insert into CUSTOMER_COURSE_JOIN(CUSTOMER_ID,COURSE_ID) values(1,2);
 insert into CUSTOMER_COURSE_JOIN(CUSTOMER_ID,COURSE_ID) values(2,2);
 insert into CUSTOMER_COURSE_JOIN(CUSTOMER_ID,COURSE_ID) values(2,3);
+
+insert into COURSE_TIME (COURSE_ID,TIME) values (1,'2015-7-3');
+insert into COURSE_TIME (COURSE_ID,TIME) values (1,'2015-7-5');
+insert into COURSE_TIME (COURSE_ID,TIME) values (1,'2015-7-7');
+insert into COURSE_TIME (COURSE_ID,TIME) values (2,'2015-7-4');
+insert into COURSE_TIME (COURSE_ID,TIME) values (2,'2015-7-6');

@@ -1,6 +1,7 @@
 package com.tw.core;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by twer on 7/16/14.
@@ -71,7 +72,11 @@ public class User {
         this.password = password;
     }
 
-    public Employee getEmployee(){return employee;}
+    public Employee getEmployee(){
+        return employee;
+    }
 
-    public void setEmployee(Employee employee){this.employee=employee;}
+    public void setEmployee(Employee employee){
+        this.employee=employee;
+    }
 }
